@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Grid
+  - UI
+  - Wall
+  - Block
+  - Pillar
+  - WallWindow
   layers:
   - Default
   - TransparentFX
