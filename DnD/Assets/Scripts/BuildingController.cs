@@ -7,8 +7,10 @@ public class BuildingController : MonoBehaviour
 {
     [SerializeField] GridManager gridManager;
     [SerializeField] TMP_Text text;
-    [SerializeField] GameObject[] ghostBuildings;
-    [SerializeField] GameObject[] prefabBuildings;
+    [SerializeField] GameObject setText;
+    [SerializeField] GameObject hotBar;
+    [HideInInspector] public GameObject[] ghostBuildings;
+    [HideInInspector] public GameObject[] prefabBuildings;
     public int selectedItem = -1;
     private float buildingRotation = 0;
     public bool buildingMode = false;
@@ -31,6 +33,8 @@ public class BuildingController : MonoBehaviour
         {
             buildingMode = !buildingMode;
             text.text = "Building-Mode: " + buildingMode.ToString();
+            setText.SetActive(buildingMode);
+            hotBar.SetActive(buildingMode);
         }
 
         if (buildingMode == true)

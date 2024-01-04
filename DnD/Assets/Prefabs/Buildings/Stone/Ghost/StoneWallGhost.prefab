@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5926961561268351138}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: StoneWallGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

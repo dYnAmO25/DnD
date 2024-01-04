@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 446578557455338800}
   - component: {fileID: 36527226125428463}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: StoneWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
