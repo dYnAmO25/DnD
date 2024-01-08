@@ -5,11 +5,18 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] Material gridMat;
-    [SerializeField] Camera cam;
 
     public bool enableGrid = true;
 
     public RaycastHit hit;
+
+    private Camera cam;
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
+
 
     void Update()
     {

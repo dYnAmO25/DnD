@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] BuildingController buildingController;
     [SerializeField] TMP_Text text;
     [SerializeField] Image[] hotbar;
+    [SerializeField] Sprite hotbarTemplate;
     [Header("Stone Prefabs")]
     [SerializeField] GameObject[] prefabStones;
     [SerializeField] GameObject[] ghostStones;
@@ -40,6 +41,10 @@ public class InventoryManager : MonoBehaviour
                 for (int i = 0; i < spriteStones.Length; i++)
                 {
                     hotbar[i].sprite = spriteStones[i];
+                }
+                for (int i = spriteStones.Length; i < 9; i++)
+                {
+                    hotbar[i].sprite = hotbarTemplate;
                 }
             }
             if (Input.GetKeyDown(KeyCode.F2))

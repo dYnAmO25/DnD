@@ -9,11 +9,16 @@ public class BuildingController : MonoBehaviour
     [SerializeField] TMP_Text text;
     [SerializeField] GameObject setText;
     [SerializeField] GameObject hotBar;
+    [SerializeField] int maxBuildingLevel;
     [HideInInspector] public GameObject[] ghostBuildings;
     [HideInInspector] public GameObject[] prefabBuildings;
     public int selectedItem = -1;
     private float buildingRotation = 0;
     public bool buildingMode = false;
+    private int buildingLevel = 0;
+
+    private const int buildingHeight = 2;
+
 
     private Camera cam;
 
@@ -42,6 +47,7 @@ public class BuildingController : MonoBehaviour
             GetSelectedItem();
             PlaceBuilding();
             DeleteBuilding();
+            UpdateBuildingLevel();
 
             if (Input.GetKeyDown(KeyCode.R))
             {
@@ -50,6 +56,24 @@ public class BuildingController : MonoBehaviour
         }
 
         SetGhosts();
+    }
+
+    void UpdateBuildingLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.PageUp))
+        {
+            if (buildingLevel < maxBuildingLevel)
+            {
+                buildingLevel++;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.PageDown))
+        {
+            if (buildingLevel > 0)
+            {
+                buildingLevel--;
+            }
+        }
     }
 
     void DeleteBuilding()
@@ -73,7 +97,7 @@ public class BuildingController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(prefabBuildings[selectedItem], new Vector3(Mathf.FloorToInt(gridManager.hit.point.x) + 0.5f, 0, Mathf.FloorToInt(gridManager.hit.point.z) + 0.5f), Quaternion.Euler(new Vector3(0, buildingRotation, 0)));
+            Instantiate(prefabBuildings[selectedItem], new Vector3(Mathf.FloorToInt(gridManager.hit.point.x) + 0.5f, buildingLevel * buildingHeight, Mathf.FloorToInt(gridManager.hit.point.z) + 0.5f), Quaternion.Euler(new Vector3(0, buildingRotation, 0)));
         }
     }
 
@@ -97,7 +121,7 @@ public class BuildingController : MonoBehaviour
     {
         if (buildingMode)
         {
-            ghostBuildings[selectedItem].transform.position = new Vector3(Mathf.FloorToInt(gridManager.hit.point.x) + 0.5f, 0, Mathf.FloorToInt(gridManager.hit.point.z) + 0.5f);
+            ghostBuildings[selectedItem].transform.position = new Vector3(Mathf.FloorToInt(gridManager.hit.point.x) + 0.5f, buildingLevel * buildingHeight, Mathf.FloorToInt(gridManager.hit.point.z) + 0.5f);
             ghostBuildings[selectedItem].transform.rotation = Quaternion.Euler(new Vector3(0, buildingRotation, 0));
 
             for (int i = 0; i < ghostBuildings.Length; i++)
